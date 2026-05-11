@@ -41,7 +41,7 @@ packet-analyzer/
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/packet-analyzer.git
+git clone https://github.com/Himanshu230806/packet-analyzer.git
 cd packet-analyzer
 ```
 
