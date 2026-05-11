@@ -1,0 +1,201 @@
+# 🔍 Network Packet Analyzer
+
+A Python-based network packet capture and security analysis tool built with Scapy.
+Detects real threats — cleartext credentials, port scans, ARP spoofing, suspicious DNS, and ICMP floods —
+and generates professional HTML and CSV reports.
+
+> **Built as a cybersecurity portfolio project.**
+
+---
+
+## 📸 What It Does
+
+| Detection Module | What It Finds |
+|---|---|
+| Cleartext Credentials | Passwords sent over HTTP, FTP, Telnet |
+| Port Scan Detection | Nmap-style SYN scans |
+| ARP Spoofing | Man-in-the-Middle attacks on LAN |
+| DNS Analysis | Suspicious domains, DGA patterns, C2 beaconing |
+| ICMP Flood | Ping-based DoS attacks |
+| Traffic Statistics | Protocol breakdown, top talkers, top ports |
+
+---
+
+## 📁 Project Structure
+
+```
+packet-analyzer/
+├── main.py          ← Entry point / CLI
+├── capture.py       ← Live capture & .pcap loading
+├── analyzer.py      ← All detection & analysis logic
+├── report.py        ← HTML, CSV, terminal report generation
+├── demo.py          ← Demo mode (no admin rights needed)
+├── requirements.txt ← Python dependencies
+├── captures/        ← Saved .pcap files
+└── reports/         ← HTML and CSV reports
+```
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/YOUR_USERNAME/packet-analyzer.git
+cd packet-analyzer
+```
+
+### 2. Install Python dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Install packet capture driver
+
+**Windows:**
+- Download and install [Npcap](https://npcap.com)
+- During install, check **"WinPcap API-compatible mode"**
+
+**Ubuntu / Debian:**
+```bash
+sudo apt update && sudo apt install libpcap-dev
+```
+
+**macOS:**
+```bash
+brew install libpcap
+```
+
+---
+
+## 🚀 Usage
+
+### Run the demo (no admin rights needed)
+```bash
+python demo.py
+```
+This generates a synthetic capture with all attack types and produces a full HTML report.
+
+---
+
+### List available network interfaces
+```bash
+python main.py --list-interfaces
+```
+
+---
+
+### Live packet capture
+```bash
+# Windows (run as Administrator)
+python main.py --iface "Wi-Fi" --count 300
+
+# Linux / macOS
+sudo python main.py --iface eth0 --count 300
+```
+
+---
+
+### Analyse an existing .pcap file
+```bash
+python main.py --load captures/capture.pcap
+```
+
+---
+
+### Custom report name
+```bash
+python main.py --load captures/capture.pcap --report-name pentest_lab_01
+```
+
+---
+
+### All options
+```
+--iface           Network interface to capture on
+--count           Number of packets to capture (default: 200)
+--load            Path to existing .pcap file
+--list-interfaces List all interfaces and exit
+--report-name     Base name for output files
+--no-html         Skip HTML report generation
+--no-csv          Skip CSV export
+```
+
+---
+
+## 📊 Output
+
+After running, two files are saved to the `reports/` folder:
+
+**HTML Report** — open in any browser:
+- Executive summary with severity counts
+- Protocol distribution chart
+- Top talkers and top ports tables
+- DNS query analysis
+- Full findings list with recommendations
+
+**CSV Export** — open in Excel or any tool:
+- One row per finding
+- All fields: type, severity, source IP, detail, recommendation
+
+---
+
+## 🧪 Testing the Tool
+
+You can test each detection module:
+
+```bash
+# Test port scan detection — run Nmap against your own machine
+nmap -sS 127.0.0.1
+
+# Test credential detection — use DVWA (Damn Vulnerable Web App)
+# Set up DVWA locally and submit login form over HTTP
+
+# Test ARP detection — use arpspoof (Linux, dsniff package)
+sudo arpspoof -i eth0 -t 192.168.1.1 192.168.1.100
+```
+
+---
+
+## 🛠️ Technologies Used
+
+| Tool | Purpose |
+|---|---|
+| Python 3.10+ | Core language |
+| Scapy | Packet capture, parsing, crafting |
+| colorama | Colored terminal output |
+| Chart.js (CDN) | Protocol and severity charts in HTML report |
+
+---
+
+## 📄 Resume Bullet Points
+
+Use these to describe this project on your CV:
+
+> - Built a Python packet analyzer using Scapy to capture and inspect live TCP/UDP/DNS/ARP traffic, parsing protocol headers and extracting security-relevant fields from each packet layer.
+>
+> - Implemented five detection modules — cleartext credential exposure, SYN port scan detection, ARP spoofing, DNS anomaly analysis (DGA/beaconing), and ICMP flood detection — with severity-rated findings.
+>
+> - Generated professional HTML reports with Chart.js visualizations and CSV exports, documenting findings with reproduction steps and remediation recommendations in a pentest-style format.
+
+---
+
+## ⚠️ Legal & Ethical Notice
+
+This tool is for **educational and authorized testing only**.
+- Only capture traffic on networks you own or have explicit written permission to test.
+- Never use this tool against production systems without authorization.
+- Capturing traffic on public or corporate networks without permission is illegal.
+
+---
+
+## 📚 Learning Resources
+
+- [Scapy Documentation](https://scapy.readthedocs.io)
+- [Wireshark](https://www.wireshark.org) — open any `.pcap` file generated by this tool
+- [TryHackMe — Wireshark room](https://tryhackme.com/room/wiresharkthebasics)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+
+---
+
+*Made with Python & Scapy | Cybersecurity Portfolio Project*
