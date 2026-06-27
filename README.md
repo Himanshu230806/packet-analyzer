@@ -166,19 +166,6 @@ sudo arpspoof -i eth0 -t 192.168.1.1 192.168.1.100
 | colorama | Colored terminal output |
 | Chart.js (CDN) | Protocol and severity charts in HTML report |
 
----
-
-## 📄 Resume Bullet Points
-
-Use these to describe this project on your CV:
-
-> - Built a Python packet analyzer using Scapy to capture and inspect live TCP/UDP/DNS/ARP traffic, parsing protocol headers and extracting security-relevant fields from each packet layer.
->
-> - Implemented five detection modules — cleartext credential exposure, SYN port scan detection, ARP spoofing, DNS anomaly analysis (DGA/beaconing), and ICMP flood detection — with severity-rated findings.
->
-> - Generated professional HTML reports with Chart.js visualizations and CSV exports, documenting findings with reproduction steps and remediation recommendations in a pentest-style format.
-
----
 
 ## ⚠️ Legal & Ethical Notice
 
